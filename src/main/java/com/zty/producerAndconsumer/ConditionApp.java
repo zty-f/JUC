@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @Copyright swpu
  * @author: zty-f
  * @date: 2022-04-23 21:03
- * @Description: JUC实现生产者消费者问题  condition实现精准通知线程
+ * @Description:  condition实现精准通知线程
  */
 public class ConditionApp {
     public static void main(String[] args) {
