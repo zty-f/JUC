@@ -14,7 +14,7 @@ import java.util.stream.LongStream;
  * @Description: ForkJoin测试类
  */
 
-//比较三种方式求和运算
+//比较三种方式求和运算8-
 public class Test {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         test1();//8264
