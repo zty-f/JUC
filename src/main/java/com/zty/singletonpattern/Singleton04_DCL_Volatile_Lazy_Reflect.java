@@ -62,5 +62,10 @@ public class Singleton04_DCL_Volatile_Lazy_Reflect {
         System.out.println(instance1);
         System.out.println(instance2);
         System.out.println(instance2==instance1);
+        /*
+            尽管这些方法已经很不错的生成单例模式，但是也会有反射机制带来的风险
+
+            所以就有了可以避免反射的单例模式------>枚举单例模式
+         */
     }
 }
