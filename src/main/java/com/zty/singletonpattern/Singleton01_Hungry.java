@@ -17,7 +17,7 @@ public class Singleton01_Hungry {
 
     //构造器私有化，单例模式特点！！！不允许多次实例化！
     private Singleton01_Hungry(){
-
+        System.out.println(Thread.currentThread().getName()+"正在初始化单例！");
     }
 
     public static Singleton01_Hungry getInstance(){
