@@ -1,6 +1,7 @@
 package com.zty.singletonpattern;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 /**
@@ -41,11 +42,21 @@ public class Singleton04_DCL_Volatile_Lazy_Reflect {
 
 
     //尽管上诉方法已经很完美，但是通过反射仍然可以破坏单例模式
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException, NoSuchFieldException {
         //Singleton04_DCL_Volatile_Lazy_Reflect instance1 = Singleton04_DCL_Volatile_Lazy_Reflect.getInstance();
+
+        //通过反射获取类变量，访问私有变量等等
+        Field flag = Singleton04_DCL_Volatile_Lazy_Reflect.class.getDeclaredField("FLAG");
+        flag.setAccessible(true);
+
+        //通过反射获取构造器，然后使得私有方法可以获取然后创建实例！
         Constructor<Singleton04_DCL_Volatile_Lazy_Reflect> declaredConstructor = Singleton04_DCL_Volatile_Lazy_Reflect.class.getDeclaredConstructor(null);
         declaredConstructor.setAccessible(true); //将私有方法可以获取
+
         Singleton04_DCL_Volatile_Lazy_Reflect instance1 = declaredConstructor.newInstance();
+
+        flag.set(instance1,true);//通过反射修改私有变量值
+
         Singleton04_DCL_Volatile_Lazy_Reflect instance2 = declaredConstructor.newInstance();
 
         System.out.println(instance1);
