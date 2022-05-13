@@ -14,9 +14,13 @@ public class Singleton04_DCL_Volatile_Lazy_Reflect {
 
     private static volatile Singleton04_DCL_Volatile_Lazy_Reflect instance;//避免指令重排序
 
+    private static boolean FLAG = true;
+
     private Singleton04_DCL_Volatile_Lazy_Reflect(){ //构造器私有
         synchronized (Singleton04_DCL_Volatile_Lazy_Reflect.class){
-            if(instance!=null){
+            if (FLAG){
+                FLAG = false;
+            }else{
                 throw new RuntimeException("请不要试图用反射来破坏单例模式！");
             }
         }
@@ -38,9 +42,10 @@ public class Singleton04_DCL_Volatile_Lazy_Reflect {
 
     //尽管上诉方法已经很完美，但是通过反射仍然可以破坏单例模式
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-        Singleton04_DCL_Volatile_Lazy_Reflect instance1 = Singleton04_DCL_Volatile_Lazy_Reflect.getInstance();
+        //Singleton04_DCL_Volatile_Lazy_Reflect instance1 = Singleton04_DCL_Volatile_Lazy_Reflect.getInstance();
         Constructor<Singleton04_DCL_Volatile_Lazy_Reflect> declaredConstructor = Singleton04_DCL_Volatile_Lazy_Reflect.class.getDeclaredConstructor(null);
         declaredConstructor.setAccessible(true); //将私有方法可以获取
+        Singleton04_DCL_Volatile_Lazy_Reflect instance1 = declaredConstructor.newInstance();
         Singleton04_DCL_Volatile_Lazy_Reflect instance2 = declaredConstructor.newInstance();
 
         System.out.println(instance1);
