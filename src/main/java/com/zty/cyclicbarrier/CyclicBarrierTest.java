@@ -11,6 +11,8 @@ import java.util.concurrent.CyclicBarrier;
  * @date: 2022-04-25 16:44
  * @Description:
  * 加法计数器  JUC辅助类
+ *
+ * 多个线程共同等待一个状态达成然后再进行执行！
  */
 /////  final int finalI = i;  //lambda表达式默认不能获取前面参数，可以创建一个final类型的副本供lambda表达式内部使用！
 public class CyclicBarrierTest {

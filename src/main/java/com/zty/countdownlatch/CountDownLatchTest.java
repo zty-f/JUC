@@ -11,6 +11,7 @@ import java.util.concurrent.CountDownLatch;
  * @Description: CountDownLatch测试  JUC辅助类
  *
  * 实现计数功能完成指定任务  减法计数器
+ * 一个任务等待其他任务都执行完毕后再执行！
  */
 public class CountDownLatchTest {
     public static void main(String[] args) throws InterruptedException {
